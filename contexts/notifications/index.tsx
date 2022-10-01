@@ -2,7 +2,7 @@ import React, { createContext, useCallback, useContext, useState } from 'react';
 
 type NotificationType = 'error' | 'success';
 
-type Add = (type: NotificationType, message: string) => void;
+type Add = (type: NotificationType, message: string) => string;
 
 type Remove = (id: string) => void;
 
@@ -26,10 +26,14 @@ const NotificationsProvider = ({ children }: { children: React.ReactNode }) => {
   const [notifications, setNotifications] = useState<Notification[]>([]);
 
   const add: Add = useCallback<Add>((type, message) => {
+    const id = Date.now().toString();
+
     setNotifications(prevNotifications => [
       ...prevNotifications,
-      { id: Date.now().toString(), message, type }
+      { id, message, type }
     ]);
+
+    return id;
   }, []);
 
   const remove: Remove = useCallback<Remove>(id => {
