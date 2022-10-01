@@ -19,6 +19,17 @@
   align-items: center;
 }
 
+.notifications {
+  position: sticky;
+  top: 65;
+}
+
+.alert {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .container {
   padding: 16px;
 }
