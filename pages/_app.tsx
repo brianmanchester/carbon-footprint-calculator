@@ -8,6 +8,8 @@ import {
 } from '@tanstack/react-query';
 import { ChakraProvider } from '@chakra-ui/react';
 import { Layout } from '@/components/layout';
+import Head from 'next/head';
+import { NotificationsProvider } from 'contexts/notifications';
 
 function EmissionsCalculator({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(() => new QueryClient());
@@ -17,9 +19,17 @@ function EmissionsCalculator({ Component, pageProps }: AppProps) {
       {/* @ts-ignore: Issue with latest version of Next.js. See https://github.com/vercel/next.js/issues/40372 */}
       <Hydrate state={pageProps.dehydratedState}>
         <ChakraProvider>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
+          <NotificationsProvider>
+            <Layout>
+              <Head>
+                <meta
+                  name='viewport'
+                  content='minimum-scale=1, initial-scale=1, width=device-width'
+                />
+              </Head>
+              <Component {...pageProps} />
+            </Layout>
+          </NotificationsProvider>
         </ChakraProvider>
       </Hydrate>
     </QueryClientProvider>
