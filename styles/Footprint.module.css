@@ -1,0 +1,7 @@
+.footprint-container {
+  margin-top: 32px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+}
