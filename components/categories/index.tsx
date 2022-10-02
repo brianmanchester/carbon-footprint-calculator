@@ -1,12 +1,16 @@
 import { useCategories } from '@/lib/queries/use-categories';
-import { Box, Skeleton, Text } from '@chakra-ui/react';
+import { Box, Divider, Skeleton, Text } from '@chakra-ui/react';
 import { LinkButton } from '../link-button';
 import styles from '@/styles/Categories.module.css';
 import { useHandleError } from '@/hooks/use-handle-error';
 
 export const CATEGORY_QUERY_PARAM = 'category';
 
-export const Categories = () => {
+export type CategoriesProps = {
+  showTotalLink?: boolean;
+};
+
+export const Categories = ({ showTotalLink = true }: CategoriesProps) => {
   const { data, error, isLoading } = useCategories();
 
   useHandleError(error);
@@ -49,6 +53,25 @@ export const Categories = () => {
               {name}
             </LinkButton>
           ))}
+          {showTotalLink && (
+            <>
+              <Divider />
+              <LinkButton
+                className={styles['category-link']}
+                href={`/footprint/total`}
+                backgroundColor='cyan.600'
+                borderRadius='lg'
+                textAlign='center'
+                textColor='white'
+                fontWeight='bold'
+                _hover={{
+                  backgroundColor: 'cyan.800'
+                }}
+              >
+                Total footprint
+              </LinkButton>
+            </>
+          )}
         </>
       )}
     </Box>
