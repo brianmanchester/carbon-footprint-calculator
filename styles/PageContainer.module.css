@@ -1,0 +1,19 @@
+.page-container {
+  margin-top: 32px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+@media screen and (max-width: 880px) {
+  .heading {
+    text-align: center;
+  }
+
+  .page-container {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+}
