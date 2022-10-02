@@ -10,7 +10,8 @@ type Data = APIResponse<CategoriesPayload>;
 const handler = async (_req: NextApiRequest, res: NextApiResponse<Data>) => {
   const { data, error } = await supabase
     .from<Category>('categories')
-    .select('*');
+    .select('*')
+    .order('name');
 
   return handleResponse(res, data, { error, message: error?.message });
 };
