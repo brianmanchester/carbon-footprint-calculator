@@ -1,0 +1,11 @@
+.link-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.category-link {
+  padding: 16px;
+  width: 100%;
+}
