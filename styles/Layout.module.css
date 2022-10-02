@@ -1,8 +1,17 @@
-.topbar {
+.topbar-container {
   position: sticky;
   top: 0;
   border-bottom: 1px solid lightgray;
-  padding: 16px 24px;
+  min-width: 100%;
+  z-index: 1;
+  background-color: #ffffff;
+}
+
+.topbar {
+  margin-right: auto;
+  margin-left: auto;
+  padding: 16px;
+  max-width: 1216px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -20,8 +29,13 @@
 }
 
 .notifications {
+  padding-top: 8px;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 1216px;
   position: sticky;
-  top: 65;
+  top: 65px;
+  z-index: 1;
 }
 
 .alert {
@@ -31,7 +45,10 @@
 }
 
 .container {
-  padding: 16px;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 1216px;
+  padding: 32px 16px 16px 16px;
 }
 
 @media screen and (max-width: 520px) {
