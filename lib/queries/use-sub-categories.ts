@@ -6,8 +6,8 @@ export const useSubCategories = (categoryId?: string) =>
   useQuery<SubCategoriesPayload, Error>(
     ['sub-categories', { categoryId }],
     async () =>
-      await http.get<SubCategoriesPayload>('/api/sub-categories', {
-        categoryId
-      }),
+      await http.get<SubCategoriesPayload>(
+        `/api/categories/${categoryId}/sub-categories`
+      ),
     { enabled: !!categoryId }
   );
