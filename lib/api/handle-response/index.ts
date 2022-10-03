@@ -14,7 +14,7 @@ export const handleResponse = <TData>(
   err?: ErrorDetails
 ) => {
   if (data === null || err?.error) {
-    res.status(err?.statusCode || 500).send({
+    res.status(err?.statusCode || 500).json({
       message: err?.message || 'An error occurred'
     });
   } else {
