@@ -42,14 +42,8 @@ const NotificationsProvider = ({ children }: { children: React.ReactNode }) => {
     );
   }, []);
 
-  const value: Notifications = {
-    add,
-    notifications,
-    remove
-  };
-
   return (
-    <NotificationsContext.Provider value={value}>
+    <NotificationsContext.Provider value={{ add, notifications, remove }}>
       {children}
     </NotificationsContext.Provider>
   );
