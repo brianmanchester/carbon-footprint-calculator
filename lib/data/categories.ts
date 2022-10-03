@@ -1,3 +1,3 @@
 import { Category } from "../db/schemas";
 
-export type CategoriesPayload = Category[];
+export type CategoriesPayload = Pick<Category, 'id' | 'name'>[];
