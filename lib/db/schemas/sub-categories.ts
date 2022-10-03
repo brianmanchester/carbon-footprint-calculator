@@ -4,6 +4,6 @@ export type SubCategory = {
   created_at: string;
   category_id: number;
   unit: string;
-  unit_description: string | null;
+  description: string | null;
   emissions_factor: number;
 }
