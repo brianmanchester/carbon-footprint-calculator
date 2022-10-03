@@ -10,10 +10,20 @@ type Data = APIResponse<CategoriesPayload>;
 const handler = async (_req: NextApiRequest, res: NextApiResponse<Data>) => {
   const { data, error } = await supabase
     .from<Category>('categories')
-    .select('*')
+    .select('id, name')
     .order('name');
 
-  return handleResponse(res, data, { error, message: error?.message });
+  if (!Array.isArray(data) || data.length < 1) {
+    const noMatchError = new Error('No matching category');
+
+    return handleResponse(res, null, {
+      error: noMatchError,
+      message: noMatchError.message,
+      statusCode: 404
+    });
+  }
+
+  handleResponse(res, data, { error, message: error?.message });
 };
 
 export default handler;
