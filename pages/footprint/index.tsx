@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { Categories, CATEGORY_QUERY_PARAM } from '@/components/categories';
-import { Calculator } from '@/components/calculator';
+import { SubCategories } from '@/components/sub-categories';
 import { PageContainer } from '@/components/page-container';
 
 const Footprint: NextPage = () => {
@@ -22,7 +22,7 @@ const Footprint: NextPage = () => {
       </Head>
       <PageContainer title='Your Carbon Footprint'>
         <Categories />
-        <Calculator categoryId={categoryId} />
+        <SubCategories categoryId={Number(categoryId)} />
       </PageContainer>
     </>
   );
