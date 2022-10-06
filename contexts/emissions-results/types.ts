@@ -1,13 +1,27 @@
+export type Result = {
+  emissions: number;
+  loading: boolean;
+  name: string;
+  subCategoryId: number;
+  uses: string;
+};
+
 export type Action =
   | {
-      type: 'add-field';
-      payload: { id: number; name: string; emissions?: number };
+      type: 'add-categories';
+      payload: number[];
     }
   | {
-      type: 'update-field-emissions';
-      payload: { id: number; emissions: number };
+      type: 'add-results';
+      payload: { categoryId: number; results: Result[] };
+    }
+  | {
+      type: 'update-result';
+      payload: { categoryId: number; result: Result };
     };
 
 export type EmissionsResults = {
-  [key: number]: { name: string; emissions: number };
+  categories: {
+    [categoryId: number]: Result[];
+  };
 };
