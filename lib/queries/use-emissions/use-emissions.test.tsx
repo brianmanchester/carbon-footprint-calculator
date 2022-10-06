@@ -12,13 +12,13 @@ const wrapper = ({ children }: { children: ReactNode }) => (
 
 // Haven't finished debugging. The nock mock is failing at the moment.
 describe.skip('tests for useEmissions hook', () => {
-  beforeAll(() => {
-    nock('0.0.0.0:3000').get('/api/sub-categories/1/emissions').reply(200, {
-      emissions: 12
-    });
-  });
-
   it('should return success with the correct value', async () => {
+    nock('http://localhost:3000')
+      .get('/api/sub-categories/1/emissions')
+      .reply(200, {
+        emissions: 12
+      });
+
     const { result } = renderHook(() => useEmissions(1, '3'), { wrapper });
 
     await waitFor(() => {
