@@ -1,8 +1,11 @@
 import { useCategories } from '@/lib/queries/use-categories';
-import { Box, Divider, Skeleton, Text } from '@chakra-ui/react';
+import { Box, Divider, Text } from '@chakra-ui/react';
 import { LinkButton } from '../link-button';
 import styles from '@/styles/Categories.module.css';
 import { useHandleError } from '@/hooks/use-handle-error';
+import { CategoriesSkeleton } from '@/components/skeletons';
+import { useEffect } from 'react';
+import { useEmissionsResults } from '@/contexts/emissions-results';
 
 export const CATEGORY_QUERY_PARAM = 'category';
 
@@ -12,10 +15,17 @@ export type CategoriesProps = {
 
 export const Categories = ({ showTotalLink = true }: CategoriesProps) => {
   const { data, error, isLoading } = useCategories();
+  const { dispatch } = useEmissionsResults();
 
   useHandleError(error);
 
   const showLoader = !!error || isLoading || !data;
+
+  useEffect(() => {
+    if (data) {
+      dispatch({ type: 'add-categories', payload: data.map(c => c.id) });
+    }
+  }, [data, dispatch]);
 
   return (
     <Box
@@ -26,11 +36,7 @@ export const Categories = ({ showTotalLink = true }: CategoriesProps) => {
       minWidth='xs'
     >
       {showLoader ? (
-        <>
-          <Skeleton borderRadius='lg' width='200px' height='36px' />
-          <Skeleton borderRadius='lg' height='56px' width='100%' />
-          <Skeleton borderRadius='lg' height='56px' width='100%' />
-        </>
+        <CategoriesSkeleton />
       ) : (
         <>
           <Text fontWeight='bold' fontSize='2xl'>
