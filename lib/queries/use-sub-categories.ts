@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { SubCategoriesPayload } from '../data/sub-categories';
 import { http } from '../http';
 
-export const useSubCategories = (categoryId?: string) =>
+export const useSubCategories = (categoryId?: number) =>
   useQuery<SubCategoriesPayload, Error>(
     ['sub-categories', { categoryId }],
     async () =>
