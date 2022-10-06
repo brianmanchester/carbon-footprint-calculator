@@ -10,6 +10,8 @@ import { ChakraProvider } from '@chakra-ui/react';
 import { Layout } from '@/components/layout';
 import Head from 'next/head';
 import { NotificationsProvider } from 'contexts/notifications';
+import { EmissionsResultsProvider } from '@/contexts/emissions-results';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 function EmissionsCalculator({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(() => new QueryClient());
@@ -20,18 +22,21 @@ function EmissionsCalculator({ Component, pageProps }: AppProps) {
       <Hydrate state={pageProps.dehydratedState}>
         <ChakraProvider>
           <NotificationsProvider>
-            <Layout>
-              <Head>
-                <meta
-                  name='viewport'
-                  content='minimum-scale=1, initial-scale=1, width=device-width'
-                />
-              </Head>
-              <Component {...pageProps} />
-            </Layout>
+            <EmissionsResultsProvider>
+              <Layout>
+                <Head>
+                  <meta
+                    name='viewport'
+                    content='minimum-scale=1, initial-scale=1, width=device-width'
+                  />
+                </Head>
+                <Component {...pageProps} />
+              </Layout>
+            </EmissionsResultsProvider>
           </NotificationsProvider>
         </ChakraProvider>
       </Hydrate>
+      <ReactQueryDevtools />
     </QueryClientProvider>
   );
 }
