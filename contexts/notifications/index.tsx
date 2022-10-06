@@ -1,4 +1,10 @@
-import { createContext, useCallback, useContext, useState } from 'react';
+import {
+  createContext,
+  ReactNode,
+  useCallback,
+  useContext,
+  useState
+} from 'react';
 
 type NotificationType = 'error' | 'success';
 
@@ -22,7 +28,7 @@ const NotificationsContext = createContext<Notifications | undefined>(
   undefined
 );
 
-const NotificationsProvider = ({ children }: { children: React.ReactNode }) => {
+const NotificationsProvider = ({ children }: { children: ReactNode }) => {
   const [notifications, setNotifications] = useState<Notification[]>([]);
 
   const add: Add = useCallback<Add>((type, message) => {
