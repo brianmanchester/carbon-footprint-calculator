@@ -24,7 +24,7 @@ export const TotalFootprintSum = ({
           padding={4}
           width='full'
         >
-          <Text fontWeight='bold' fontSize='lg'>
+          <Text data-testid='total-per-year' fontWeight='bold' fontSize='lg'>
             Total per year: {total}
           </Text>
         </Box>
