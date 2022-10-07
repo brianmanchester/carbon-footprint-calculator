@@ -1,3 +1,5 @@
+export type Measurement = 'lbs' | 'kg';
+
 export type SubCategory = {
   id: number;
   name: string;
@@ -6,4 +8,5 @@ export type SubCategory = {
   unit: string;
   description: string | null;
   emissions_factor: number;
-}
+  measurement: Measurement;
+};
