@@ -41,7 +41,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 
   const { data, error } = await supabase
     .from<SubCategory>('sub_categories')
-    .select('emissions_factor')
+    .select('emissions_factor, measurement')
     .eq('id', subCategoryId);
 
   if (!Array.isArray(data) || data.length < 1) {
@@ -55,12 +55,12 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   }
 
   // The supabase ORM doesn't have a findOne
-  const [{ emissions_factor }] = data;
+  const [{ emissions_factor, measurement }] = data;
 
   handleResponse(
     res,
     {
-      emissions: calculateEmissions(Number(use), emissions_factor)
+      emissions: calculateEmissions(Number(use), emissions_factor, measurement)
     },
     { error, message: error?.message }
   );
